@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import { addTodo } from "../redux/todoSlice"
 
@@ -21,12 +21,19 @@ const Button = styled.button`
 
 const AddTodo = () => {
   const [value, setValue] = useState("")
+  //const [values, setValues] = useState([])
   const dispatch = useDispatch()
   const handleAddTodo = e => {
     e.preventDefault()
     if (value === "") {
       alert("please add todo")
     } else {
+      // setValues((prev) => {
+      //   const newValue = [...prev, value]
+      //   const jsonValue = JSON.stringify(newValue)
+      //   localStorage.setItem("todos", jsonValue)
+      //   return newValue
+      // })
       dispatch(
         addTodo({
           title: value
@@ -37,16 +44,14 @@ const AddTodo = () => {
   }
 
   return (
-    <>
-      <FormInput>
-        <Input
-          placeholder="Add new todo"
-          onChange={e => setValue(e.target.value)}
-          value={value}
-        ></Input>
-        <Button onClick={handleAddTodo}>Add</Button>
-      </FormInput>
-    </>
+    <FormInput>
+      <Input
+        placeholder="Add new todo"
+        onChange={e => setValue(e.target.value)}
+        value={value}
+      ></Input>
+      <Button onClick={handleAddTodo}>Add</Button>
+    </FormInput>
   )
 }
 

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import { deleteTodo, toggleComplete } from "../redux/todoSlice"
 
@@ -30,9 +30,13 @@ const Button = styled.button`
 `
 
 const ItemTodo = ({ id, title, completed }) => {
+  // const todos = useSelector(state => state.todos)
+  // let todoItemCompleted =
+  //   todos.completed == true ? "line-through" : "no-underline"
   const dispatch = useDispatch()
   const handleCompleted = () => {
     dispatch(toggleComplete({ id: id, completed: !completed }))
+    //console.log(todos.completed)
   }
   const handleDelete = () => {
     dispatch(deleteTodo({ id: id }))
@@ -45,6 +49,7 @@ const ItemTodo = ({ id, title, completed }) => {
             type="checkbox"
             checked={completed}
             onChange={handleCompleted}
+            //style={{ textDecoration: `${todoItemCompleted}` }}
           ></ItemInput>
           {title}
         </ItemSpan>

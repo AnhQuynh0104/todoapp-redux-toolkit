@@ -8,12 +8,12 @@ const List = styled.ul`
 
 const ListTodo = () => {
   const todos = useSelector(state => state.todos)
-
   return (
     <>
       <List>
-        {todos.map(todo => (
+        {todos.map((todo, index) => (
           <ItemTodo
+            key={index}
             id={todo.id}
             title={todo.title}
             completed={todo.completed}
