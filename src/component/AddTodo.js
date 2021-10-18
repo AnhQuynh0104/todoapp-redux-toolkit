@@ -1,15 +1,17 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import { addTodo } from "../redux/todoSlice"
 
-const FormInput = styled.div`
+const FormInput = styled.form`
   padding: 30px 0;
 `
 const Input = styled.input`
   margin-right: 10px;
   padding: 10px;
   border: none;
+  width: 340px;
+  outline: none;
 `
 const Button = styled.button`
   padding: 10px;
@@ -17,23 +19,17 @@ const Button = styled.button`
   border: none;
   color: #fff;
   border-radius: 5px;
+  width: 50px;
 `
 
 const AddTodo = () => {
   const [value, setValue] = useState("")
-  //const [values, setValues] = useState([])
   const dispatch = useDispatch()
   const handleAddTodo = e => {
     e.preventDefault()
     if (value === "") {
       alert("please add todo")
     } else {
-      // setValues((prev) => {
-      //   const newValue = [...prev, value]
-      //   const jsonValue = JSON.stringify(newValue)
-      //   localStorage.setItem("todos", jsonValue)
-      //   return newValue
-      // })
       dispatch(
         addTodo({
           title: value
